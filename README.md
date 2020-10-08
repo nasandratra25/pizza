@@ -41,6 +41,8 @@ node seeders/seedCustomers.js
 
 **NB :** pensez à lancer Mongo si nécessaire : `service mongod start`
 
+**=== Créez votre propre branche pour poster vos travaux ===**
+
 ## Vos objectifs
 ---
 
