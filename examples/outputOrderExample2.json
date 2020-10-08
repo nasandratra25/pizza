@@ -1,0 +1,75 @@
+[
+    {
+        "_id": "5f7f0df1876fce7278024a0b",
+        "pizzas": [
+            {
+                "quantity": 2,
+                "size": "S",
+                "pizza": {
+                    "_id": "5f7ed0a3c80494595c957842",
+                    "name": "margarita",
+                    "price": 8
+                }
+            },
+            {
+                "quantity": 1,
+                "size": "XL",
+                "pizza": {
+                    "_id": "5f7ed0a3c80494595c957843",
+                    "name": "regina",
+                    "price": 9.5
+                }
+            }
+        ],
+        "customer": {
+            "_id": "5f7ed0be1dc13c5982a595a2",
+            "lastname": "Durand",
+            "address": "85, rue du parc privé",
+            "phone": "0728359641"
+        },
+        "total": 25.5,
+        "cooking-time": 13.4,
+        "__v": 0
+    },
+    {
+        "_id": "5f7f11afebad4275b6b6c505",
+        "pizzas": [
+            {
+                "quantity": 2,
+                "size": "S",
+                "pizza": {
+                    "_id": "5f7ed0a3c80494595c957842",
+                    "name": "margarita",
+                    "price": 8
+                }
+            },
+            {
+                "quantity": 1,
+                "size": "M",
+                "pizza": {
+                    "_id": "5f7ed0a3c80494595c957842",
+                    "name": "margarita",
+                    "price": 8
+                }
+            },
+            {
+                "quantity": 2,
+                "size": "XL",
+                "pizza": {
+                    "_id": "5f7ed0a3c80494595c957844",
+                    "name": "chicken",
+                    "price": 9.5
+                }
+            }
+        ],
+        "customer": {
+            "_id": "5f7ed0be1dc13c5982a595a3",
+            "lastname": "Rafaa",
+            "address": "12, place du château d'eau",
+            "phone": "0556996318"
+        },
+        "total": 43,
+        "cooking-time": 22.4,
+        "__v": 0
+    }
+]
