@@ -1,0 +1,6 @@
+{
+    "name" : "hawaïenne",
+    "ingredients" : ["fromage","ananas","poulet", "sauce tomate"],
+    "description" : "une pizza exotique pour ceux qui ont besoin de vacances",
+    "price" : 10
+}
