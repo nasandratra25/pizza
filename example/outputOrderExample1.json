@@ -1,0 +1,34 @@
+[
+    {
+        "_id": "5f7f0df1876fce7278024a0b",
+        "pizzas": [
+            {
+                "quantity": 2,
+                "size": "S",
+                "pizza": {
+                    "_id": "5f7ed0a3c80494595c957842",
+                    "name": "margarita",
+                    "price": 8
+                }
+            },
+            {
+                "quantity": 1,
+                "size": "XL",
+                "pizza": {
+                    "_id": "5f7ed0a3c80494595c957843",
+                    "name": "regina",
+                    "price": 9.5
+                }
+            }
+        ],
+        "customer": {
+            "_id": "5f7ed0be1dc13c5982a595a2",
+            "lastname": "Durand",
+            "address": "85, rue du parc privé",
+            "phone": "0728359641"
+        },
+        "total": 25.5,
+        "cooking-time": 13.4,
+        "__v": 0
+    }
+]
