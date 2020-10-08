@@ -1,11 +1,11 @@
 {
     "customer" : "ObjectId de votre client",
     "pizzas" : [{
-        "name" : "Margarita",
+        "name" : "margarita",
         "quantity" : 2,
         "size" : "S"
     }, {
-        "name" : "Regina",
+        "name" : "regina",
         "quantity" : 1,
         "size" : "XL"
     }]

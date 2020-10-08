@@ -7,4 +7,4 @@ il vous suffit de copier coller le json dans le corps de la requête.
 <br>
 
 ---
-`outputOrderExample1` et `outputOrderExample2` : exemples de réponses attendue en solution du test.
+`outputOrderExample1` et `outputOrderExample2` : exemples de réponses attendues en solution du test.
