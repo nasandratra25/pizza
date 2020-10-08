@@ -4,7 +4,7 @@
 ## Introduction
 ---
 
-Ce projet est un squelette de projet pour une API REST de commande de pizzas. Il vous sera demandé d'ajouter les fonctionnalités mentionnées plus loin dans ce document
+Ce projet est un squelette de projet pour une API REST de commande de pizzas. Il vous sera demandé d'ajouter les fonctionnalités mentionnées plus loin dans ce document.
 
 ## Prérequis
 ---
@@ -54,7 +54,10 @@ Aujourd'hui, l'API contient les définitions des modèles Clients et Pizzas. Il 
     * quelles pizzas ont été commandées par quel client
     * Chaque pizza peut être commandée avec une taille différente : S, M ou XL
     * l'heure à laquelle la commandée a été passée
-    * le temps de préparation estimé. Pour chaque ingrédient qui compose une pizza de taille S, il faut compter 1 minute de préparation supplémentaire. Il faut prévoir 30 % de temps supplémentaire, pour une pizza de taille M, et encore 30 % de temps supplémentaire pour une taille XL. Il faut savoir que le four à pizza permet de cuire 4 pizzas en même temps et que leur cuisson prend 3 minutes quelque soit la taille. Le four n'est utilisée que pour une commande à la fois. Il y a deux pizzailo, l'un est chargé et de préparer les pizzas et l'autre s'occupe de la cuisson dès lors que 4 pizzas sont prête à être cuites. 
+    * le temps de cuisine estimé :
+       * Préparation : Pour chaque ingrédient qui compose une pizza de taille S, il faut compter 1 minute de préparation supplémentaire. Il faut prévoir 30 % de temps supplémentaire, pour une pizza de taille M, et encore 30 % de temps supplémentaire pour une taille XL.
+       * Cuisson : Il faut savoir que le four à pizza permet de cuire 4 pizzas en même temps et que leur cuisson prend 3 minutes quelque soit la taille. Le four n'est utilisée que pour une commande à la fois. 
+       * Equipe : Il y a deux pizzailo, l'un est chargé et de préparer les pizzas et l'autre s'occupe de la cuisson dès lors que 4 pizzas sont prête à être cuites. 
 
 3. L'api doit donc contenir, au minimum, une route qui permet la création d'une nouvelle commande ainsi qu'une route qui permet retrouver les commandes passées.
 
