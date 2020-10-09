@@ -23,7 +23,7 @@ Pour accéder à votre base de données, vous pouvez utiliser au choix :
 ## Récupération du projet
 ---
 
-Nous vous laissons le soin de cloner le projet sur votre machine et de réaliser les étapes suivantes
+**Nous vous laissons le soin de faire un fork du projet pour l'avoir dans votre gitlab. Vous nous transmettrez l'accès à votre projet pour que nous puissions consulter votre solution**
 
 * Créez un fichier .env en suivant le fichier .env-example, afin de créer vos variables d'environnement nécessaires pour la connexion à la base de données par exemple.
 
@@ -41,7 +41,6 @@ node seeders/seedCustomers.js
 
 **NB :** pensez à lancer Mongo si nécessaire : `service mongod start`
 
-**=== Créez votre propre branche pour poster vos travaux ===**
 
 ## Vos objectifs
 ---
