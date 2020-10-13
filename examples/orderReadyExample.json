@@ -1,3 +1,4 @@
 {
     "order" : "_id de la commande visée",
+    "is-prepared" : true
 }
