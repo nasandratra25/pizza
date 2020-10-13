@@ -2,9 +2,9 @@
 
 il vous suffit de copier coller le json dans le corps de la requête.
 
-`newPizza.json` : exemple de json reçud par l'api pour ajouter une nouvelle pizza <br>
+`newPizza.json` : exemple de json reçu par l'api pour ajouter une nouvelle pizza <br>
 `newOrder1.json` et `newOrder2.json`: exemple de json reçu pour créer une nouvelle commande de pizzas. 
 <br>
 
 ---
-`outputOrderExample1` et `outputOrderExample2` : exemples de réponses attendues en solution du test.
+`outputOrderExample1` et `outputOrderExample2` : exemples de réponses attendues lorsque l'on sollicité l'API pour récupérer l'ensemble des commandes effectuées à travers l'api.
