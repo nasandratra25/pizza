@@ -9,7 +9,7 @@ const orders = [{
 		size : "S",
 		pizza : {
 			_id: "5f7ed0a3c80494595c957843",
-			name: "regina",
+			name: "régina",
 			price: 9.5
 		}
 	},
@@ -18,7 +18,7 @@ const orders = [{
 			size: "XL",
 			pizza: {
 				_id: "5f7ed0a3c80494595c957843",
-				name: "regina",
+				name: "régina",
 				price: 9.5
 			}
 		}],
@@ -29,7 +29,7 @@ const orders = [{
 		phone: "0728359641"
 	},
 	total: 25.5,
-	cookingtime: 13.4,
+	"cooking-time": 13.4,
 	created : "2020-10-08T09:41:34.542Z",
 	__v: 0
 }]

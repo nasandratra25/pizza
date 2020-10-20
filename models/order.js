@@ -28,7 +28,7 @@ const OrderSchema = new Schema({
     quantity : Number,
     size : String,
     total : Number,
-    cookingtime : Number,
+    "cooking-time" : Number,
     created : {type: Date, default : Date.now}
 });
 
