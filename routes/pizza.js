@@ -9,6 +9,7 @@ const Pizza = require('../models/pizza');
 
 router.route('/pizza').post(async (req, res) => {
     try {
+
         let pizza = new Pizza(req.body);
         pizza = await pizza.save();
         return res.status(200).json(pizza);
