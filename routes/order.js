@@ -81,6 +81,46 @@ router.route('/commande').post(async (req, res) => {
     }
 });
 
+/* RECHERCHE : routes pour retrouver un commandes par son id */
+router.route('/commande/:id').get(async (req, res) => {
+    try {
+        const order = await Order.findById(req.params.id);
+        return res.status(200).json(order);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.route('/commande').get(async (req, res) => {
+    try {
+        const orderReq = req.body;
+        if (orderReq.customer != null ){
+            const orders = await Order.find({"customer._id": orderReq.customer});
+            return res.status(200).json(orders);
+        }
+        else if(orderReq.size != null){
+            let orders = await Order.find({"pizzas.size": orderReq.size});
+            return res.status(200).json(orders);
+        }
+        else if(orderReq["date-commande"] != null){
+            let orders = await Order.find({"created": orderReq["date-commande"]});
+            return res.status(200).json(orders);
+        }
+        else if(orderReq["prix-total"] != null){
+            let orders = await Order.find({"total": orderReq["prix-total"]});
+            return res.status(200).json(orders);
+        }
+        else if(orderReq["cuisson-estime"] != null){
+            let orders = await Order.find({"cooking-time": orderReq["cuisson-estime"]});
+            return res.status(200).json(orders);
+        }
+        const orders = await Order.find();
+        return res.status(200).json(orders);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
 router.route('/commandes').get(async (req, res) => {
     try {
         const orders = await Order.find();
