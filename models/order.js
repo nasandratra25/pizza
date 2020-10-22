@@ -29,7 +29,8 @@ const OrderSchema = new Schema({
     size : String,
     total : Number,
     "cooking-time" : Number,
-    created : {type: Date, default : Date.now}
+    created : {type: Date, default : Date.now},
+    "is-prepared" : {type: Boolean, default : false}
 });
 
 module.exports = mongoose.model('order', OrderSchema);

@@ -9,6 +9,8 @@ const Customer = require('../models/customer');
 
 
 /* TODO : routes pour créer et accéder aux commandes */
+
+/* TODO : créer commandes */
 router.route('/commande').post(async (req, res) => {
     try {
         var sommeTotal = 0;
@@ -81,7 +83,7 @@ router.route('/commande').post(async (req, res) => {
     }
 });
 
-/* RECHERCHE : routes pour retrouver un commandes par son id */
+/* TODO : accéder aux commandes */
 router.route('/commande/:id').get(async (req, res) => {
     try {
         const order = await Order.findById(req.params.id);
@@ -125,6 +127,30 @@ router.route('/commandes').get(async (req, res) => {
     try {
         const orders = await Order.find();
         return res.status(200).json(orders);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+/* TODO : suivi  commandes */
+router.route('/commande/suivi').post(async (req,res) => {
+
+    try {
+        const orderReq = req.body;
+        await Order.findOneAndUpdate({ _id: orderReq.order },
+            {
+                $set: { "is-prepared": req.body["is-prepared"]}
+            },
+            {
+                upsert: true
+            }
+        );
+        const order = await Order.findById(orderReq.order);
+        const orderSuivi = [{
+            order: order._id,
+            "is-prepared": order["is-prepared"]
+        }];
+        return res.status(200).json(orderSuivi);
     } catch (err) {
         console.log(err);
     }
