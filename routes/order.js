@@ -13,70 +13,77 @@ const Customer = require('../models/customer');
 /* TODO : créer commandes */
 router.route('/commande').post(async (req, res) => {
     try {
-        var sommeTotal = 0;
-        var sommeQuantite = 0;
-        var tempsPreparation = 0;
-        var tempsCuisson = 3;
-        let orders = new Order();
+        let sommeTotal = 0;
+        let sommeQuantite = 0;
+        let tempsPreparation = 0;
+        let tempsCuisson = 3;
+        let order = new Order();
+        let coefCuisson = 1;
         const orderReq = req.body;
-        const customer = await Customer.find({"_id": orderReq.customer});
+        const customer = await Customer.findOne({"_id": orderReq.customer});
+        if (customer == null){
+            console.log('customer non disponible ');
+            return res.status(400).json({error: "customer non disponible"});
+        }
 
-        orders.customer = {
-            _id: customer[0]._id,
-            lastname: customer[0].lastname,
-            address: customer[0].address,
-            phone: customer[0].phone
-        };
 
         for (var i = 0; i < orderReq.pizzas.length; i++){
 
-            let pizza = await Pizza.find({name: orderReq.pizzas[i].name});
+            let pizza = await Pizza.findOne({name: orderReq.pizzas[i].name});
+            if (pizza == null){
+                console.log('pizza non disponible ');
+                return res.status(400).json({error: "pizza non disponible"});
+            }
             let pizzas = {
                 quantity: orderReq.pizzas[i].quantity,
                 size: orderReq.pizzas[i].size,
                 pizza: {
-                    _id: pizza[0]._id,
-                    name: orderReq.pizzas[i].name,
-                    price: pizza[0].price
+                    _id: pizza._id,
+                    name: pizza.name,
+                    price: pizza.price
                 }
             };
-            sommeTotal += (parseFloat(orderReq.pizzas[i].quantity) * parseFloat(pizza[0].price));
+            sommeTotal += (parseFloat(orderReq.pizzas[i].quantity) * parseFloat(pizza.price));
             sommeQuantite += parseFloat(orderReq.pizzas[i].quantity);
-            orders.pizzas.push(pizzas);
+            order.pizzas.push(pizzas);
             const tempsSupplementaire = ((1 * 30)/100);
 
             if (orderReq.pizzas[i].size === 'S'){
-                tempsPreparation += parseFloat(pizza[0].ingredients.length) * parseFloat(orderReq.pizzas[i].quantity);
+                tempsPreparation += parseFloat(pizza.ingredients.length) * parseFloat(orderReq.pizzas[i].quantity);
             }
             else if (orderReq.pizzas[i].size === 'M'){
-                tempsPreparation += ((parseFloat(pizza[0].ingredients.length) + ( parseFloat(pizza[0].ingredients.length) * parseFloat(tempsSupplementaire )))
+                tempsPreparation += ((parseFloat(pizza.ingredients.length) + ( parseFloat(pizza.ingredients.length) * parseFloat(tempsSupplementaire )))
                     *  parseFloat(orderReq.pizzas[i].quantity));
             }
             else {
-                tempsPreparation += ((parseFloat(pizza[0].ingredients.length) + ( parseFloat(pizza[0].ingredients.length) * parseFloat((tempsSupplementaire * 2))))
+                tempsPreparation += ((parseFloat(pizza.ingredients.length) + ( parseFloat(pizza.ingredients.length) * parseFloat((tempsSupplementaire * 2))))
                     *  parseFloat(orderReq.pizzas[i].quantity));
             }
 
         };
 
-        var coefCuisson = 1;
-
         if (sommeQuantite <= 4 ){
-            coefCuisson = 1;
-            var tempsCuissonAjouter = parseFloat((coefCuisson * tempsCuisson));
-            orders.__v = 0;
-            orders["cooking-time" ] = tempsCuissonAjouter + tempsPreparation;
-            orders.total = (parseFloat(sommeTotal));
-            orders.save();
-            return res.status(200).json(orders);
+            let tempsCuissonAjouter = parseFloat((coefCuisson * tempsCuisson));
+            order.__v = 0;
+            order["cooking-time" ] = tempsCuissonAjouter + tempsPreparation;
+            order.total = (parseFloat(sommeTotal));
+            order.save();
+            return res.status(200).json(order);
         }
-        var coefCuisson = parseInt((sommeQuantite / 4));
-        var tempsCuissonAjouter = parseFloat((coefCuisson * tempsCuisson));
-        orders.__v = 0;
-        orders["cooking-time" ]= tempsCuissonAjouter + tempsPreparation;
-        orders.total = (parseFloat(sommeTotal));
-        orders.save();
-        return res.status(200).json(orders);
+        coefCuisson = parseInt((sommeQuantite / 4));
+        let tempsCuissonAjouter = parseFloat((coefCuisson * tempsCuisson));
+        order.__v = 0;
+        order["cooking-time" ]= tempsCuissonAjouter + tempsPreparation;
+        order.total = (parseFloat(sommeTotal));
+
+        order.customer = {
+            _id: customer._id,
+            lastname: customer.lastname,
+            address: customer.address,
+            phone: customer.phone
+        };
+        order.save();
+        return res.status(200).json(order);
 
     } catch (err) {
         console.log(err);
@@ -96,23 +103,23 @@ router.route('/commande/:id').get(async (req, res) => {
 router.route('/commande').get(async (req, res) => {
     try {
         const orderReq = req.body;
-        if (orderReq.customer != null ){
+        if (orderReq.customer){
             const orders = await Order.find({"customer._id": orderReq.customer});
             return res.status(200).json(orders);
         }
-        else if(orderReq.size != null){
+        else if(orderReq.size){
             let orders = await Order.find({"pizzas.size": orderReq.size});
             return res.status(200).json(orders);
         }
-        else if(orderReq["date-commande"] != null){
+        else if(orderReq["date-commande"]){
             let orders = await Order.find({"created": orderReq["date-commande"]});
             return res.status(200).json(orders);
         }
-        else if(orderReq["prix-total"] != null){
+        else if(orderReq["prix-total"]){
             let orders = await Order.find({"total": orderReq["prix-total"]});
             return res.status(200).json(orders);
         }
-        else if(orderReq["cuisson-estime"] != null){
+        else if(orderReq["cuisson-estime"]){
             let orders = await Order.find({"cooking-time": orderReq["cuisson-estime"]});
             return res.status(200).json(orders);
         }
